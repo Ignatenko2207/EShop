@@ -2,27 +2,27 @@ package org.itstep.model;
 
 public class Account {
 
-	private String FirstName;
-	private String SecondName;
+	private String firstName;
+	private String secondName;
 	private String Login;
 	private String Password;
 	private String Role;
 	private String Age;
 
 	public String getFirstName() {
-		return FirstName;
+		return firstName;
 	}
 
 	public void setFirstName(String firstName) {
-		this.FirstName = firstName;
+		this.firstName = firstName;
 	}
 
 	public String getSecondName() {
-		return SecondName;
+		return secondName;
 	}
 
 	public void setSecondName(String secondName) {
-		this.SecondName = secondName;
+		this.secondName = secondName;
 	}
 
 	public String getLogin() {
@@ -58,8 +58,8 @@ public class Account {
 	}
 
 	public Account(String firstName, String secondName, String login, String password, String role, String age) {
-		this.FirstName = firstName;
-		this.SecondName = secondName;
+		this.firstName = firstName;
+		this.secondName = secondName;
 		this.Login = login;
 		this.Password = password;
 		this.Role = role;
