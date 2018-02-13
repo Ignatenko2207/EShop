@@ -4,7 +4,6 @@ public class Cart {
 	private int id;
 	private String accLogin;
 	private String imgUrl;
-	
 	private int orderId;
 	private long timeCreation;
 	
