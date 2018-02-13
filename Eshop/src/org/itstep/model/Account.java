@@ -6,8 +6,8 @@ public class Account {
 	private String secondName;
 	private String login;
 	private String password;
-	private String Role;
-	private String Age;
+	private String role;
+	private String age;
 
 	public String getFirstName() {
 		return firstName;
@@ -42,19 +42,19 @@ public class Account {
 	}
 
 	public String getRole() {
-		return Role;
+		return role;
 	}
 
 	public void setRole(String role) {
-		Role = role;
+		this.role = role;
 	}
 
 	public String getAge() {
-		return Age;
+		return age;
 	}
 
 	public void setAge(String age) {
-		Age = age;
+		this.age = age;
 	}
 
 	public Account(String firstName, String secondName, String login, String password, String role, String age) {
@@ -62,8 +62,8 @@ public class Account {
 		this.secondName = secondName;
 		this.login = login;
 		this.password = password;
-		this.Role = role;
-		this.Age = age;
+		this.role = role;
+		this.age = age;
 	}
 
 }
