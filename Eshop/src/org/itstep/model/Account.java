@@ -1,4 +1,3 @@
-
 package org.itstep.model;
 
 public class Account {
@@ -47,7 +46,7 @@ public class Account {
 	}
 
 	public void setRole(String role) {
-		role = role;
+		this.role = role;
 	}
 
 	public String getAge() {
@@ -65,6 +64,10 @@ public class Account {
 		this.password = password;
 		this.role = role;
 		this.age = age;
+
 	}
 
+	public Account() {
+		// TODO Auto-generated constructor stub
+	}
 }
