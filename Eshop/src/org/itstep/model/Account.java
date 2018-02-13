@@ -64,6 +64,10 @@ public class Account {
 		this.password = password;
 		this.role = role;
 		this.age = age;
+
 	}
 
+	public Account() {
+		// TODO Auto-generated constructor stub
+	}
 }
