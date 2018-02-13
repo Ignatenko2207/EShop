@@ -11,7 +11,7 @@ public class AccountDAO {
 		PreparedStatement statement = null;
 		String sql = "INSERT INTO accounts(first_name, password, second_name, age, role, login) VALUES(?,?,?,?,?,?)";
 		try {
-			connection = ConnectionToDB.getConnection();
+			connection = DBConnection.getConnection();
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, account.getFirstName());
 			statement.setString(2, account.getPassword());
@@ -36,26 +36,25 @@ public class AccountDAO {
 		}
 	}
 
-	public Account get(String firstName, String secondName) {
+	public Account get(String login) {
 		Account account = new Account();
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-		String sql = "SELECT * FROM accounts WHERE first_name=? AND second_name=?";
+		String sql = "SELECT * FROM accounts WHERE login=?";
 
 		try {
-			connection = ConnectionToDB.getConnection();
+			connection = DBConnection.getConnection();
 			statement = connection.prepareStatement(sql);
-			statement.setString(1, firstName);
-			statement.setString(3, secondName);
+			statement.setString(1, login);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				account.setFirstName(resultSet.getString("first_name"));
 				account.setSecondName(resultSet.getString("second_name"));
-				account.setAge(resultSet.getString(4));
-				account.setPassword(resultSet.getString(2));
-				account.setRole(resultSet.getString(5));
-				account.setLogin(resultSet.getString(6));
+				account.setAge(resultSet.getString("age"));
+				account.setPassword(resultSet.getString("password"));
+				account.setRole(resultSet.getString("role"));
+				account.setLogin(resultSet.getString("login"));
 
 			}
 		} catch (SQLException e) {
@@ -86,7 +85,7 @@ public class AccountDAO {
 		PreparedStatement statement = null;
 		String sql = "UPDATE accounts SET first_name=?, second_name=?, login=?, password=? WHERE first_name=? AND second_name=?";
 		try {
-			connection = ConnectionToDB.getConnection();
+			connection = DBConnection.getConnection();
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, newAccount.getFirstName());
 			statement.setString(2, newAccount.getSecondName());
@@ -117,7 +116,7 @@ public class AccountDAO {
 		PreparedStatement statement = null;
 		String sql = "DELETE FROM accounts WHERE first_name=? AND second_name=?";
 		try {
-			connection = ConnectionToDB.getConnection();
+			connection = DBConnection.getConnection();
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, firstName);
 			statement.setString(2, secondName);
