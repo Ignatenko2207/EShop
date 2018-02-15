@@ -1,5 +1,7 @@
 package org.itstep.model;
 
+import org.itstep.servlet.AuthorizationServlet;
+
 public class Order {
 	private long orderId;
 	private String good;
