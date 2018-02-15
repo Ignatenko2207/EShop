@@ -10,52 +10,51 @@ import javax.print.attribute.ResolutionSyntax;
 import org.itstep.model.Order;
 
 public class OrderDAO {
-	public void saveOrder(Order order ) {
-				
+	public void saveOrder(Order order) {
+
 		Connection connection = null;
-		  PreparedStatement statement = null;
-		  String sql = "INSERT INTO order (orderId, good, amount) VALUES(?,?,?)";
-		  
-		  try {
-			   connection = DBConnection.getConnection();
-			   statement = connection.prepareStatement(sql);
-			   statement.setLong(1, order.getOrderId()); 
-			   statement.setString(1, order.getGood());
-			   statement.setInt(3, order.getAmount()); 
-			   
-			  
-			   statement.executeUpdate();
-			   statement.close();
-			  } catch (SQLException e) {
-			   e.printStackTrace();
-			  } finally {
-			   try {
-			    statement.close();
-			   } catch (SQLException e) {
-			    e.printStackTrace();
-			   }
-			   try {
-			    connection.close();
-			   } catch (SQLException e) {
-			    e.printStackTrace();
-			   }
-		
+		PreparedStatement statement = null;
+		String sql = "INSERT INTO order (orderId, good, amount) VALUES(?,?,?)";
+
+		try {
+			connection = DBConnection.getConnection();
+			statement = connection.prepareStatement(sql);
+			statement.setLong(1, order.getOrderId());
+			statement.setString(2, order.getGood());
+			statement.setInt(3, order.getAmount());
+
+			statement.executeUpdate();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+
 	}
-	
-}
-	
+
 	public Order get(Long orderId, String good) {
 		Order order = new Order();
-		
+
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		String sql = "SELECT * FROM order WHERE orderId=? AND good=?";
-		
+
 		try {
 			connection = DBConnection.getConnection();
 			statement = connection.prepareStatement(sql);
-			statement.setLong(1,orderId);
+			statement.setLong(1, orderId);
 			statement.setString(2, good);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
@@ -83,10 +82,10 @@ public class OrderDAO {
 			}
 		}
 		return order;
-		
+
 	}
-		
-	public void updete(Long orderId, String good,  Order newOrder) {
+
+	public void updete(Long orderId, String good, Order newOrder) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		String sql = "UPDATE order SET orderId=?, good=?, amount=? WHERE order=? AND good=?";
@@ -95,7 +94,7 @@ public class OrderDAO {
 			connection = DBConnection.getConnection();
 			statement = connection.prepareStatement(sql);
 			statement.setLong(1, orderId);
-			statement.setString(2,good);
+			statement.setString(2, good);
 
 			statement.setLong(1, newOrder.getOrderId());
 			statement.setString(2, newOrder.getGood());
@@ -118,36 +117,34 @@ public class OrderDAO {
 			}
 		}
 	}
-		public void delete(Long orderId, String good) {
-			
-			Connection connection = null;
-			PreparedStatement statement = null;
-			String sql = "DELETE FROM order WHERE orderId=? AND good=?";
 
+	public void delete(Long orderId, String good) {
+
+		Connection connection = null;
+		PreparedStatement statement = null;
+		String sql = "DELETE FROM order WHERE orderId=? AND good=?";
+
+		try {
+			connection = DBConnection.getConnection();
+			statement = connection.prepareStatement(sql);
+			statement.setLong(1, orderId);
+			statement.setString(2, good);
+			statement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			try {
-				connection = DBConnection.getConnection();
-				statement = connection.prepareStatement(sql);
-				statement.setLong(1, orderId);
-				statement.setString(2, good);
-				statement.executeUpdate();
-
+				statement.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} finally {
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				try {
-					connection.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
 			}
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 
-		}
-		}
-		
-	
-	
+	}
+}

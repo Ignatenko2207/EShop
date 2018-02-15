@@ -29,11 +29,14 @@ public class Good {
 	public void setPrice(int price) {
 		Price = price;
 	}
-	
+
 	public Good(String artNo, String name, int prise) {
 		this.ArtNo = artNo;
 		this.Name = name;
 		this.Price = prise;
-	
+
+	}
+	public Good() {
+
 	}
 }

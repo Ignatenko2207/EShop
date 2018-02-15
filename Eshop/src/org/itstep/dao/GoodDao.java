@@ -1,13 +1,9 @@
 package org.itstep.dao;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 
 import org.itstep.dao.DBConnection;
 import org.itstep.model.Good;
-import org.itstep.model.Good;
-
 
 public class GoodDao {
 	public void save(Good good) {
@@ -21,7 +17,7 @@ public class GoodDao {
 			statement.setString(1, good.getArtNo());
 			statement.setString(2, good.getName());
 			statement.setLong(3, good.getPrice());
-			
+
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -31,20 +27,18 @@ public class GoodDao {
 			try {
 				statement.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {
 				connection.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
 		}
 
 	}
-	
+
 	public Good get(String artNo) {
 
 		Good good = new Good(artNo, artNo, 0);
@@ -62,7 +56,7 @@ public class GoodDao {
 				good.setArtNo(resultSet.getString("asin"));
 				good.setName(resultSet.getString("name"));
 				good.setPrice(resultSet.getInt("price"));
-				
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -85,8 +79,7 @@ public class GoodDao {
 		}
 		return good;
 	}
-	
-	
+
 	public void update(String asin, Good newGood) {
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -100,7 +93,7 @@ public class GoodDao {
 			statement.setString(1, newGood.getArtNo());
 			statement.setString(2, newGood.getName());
 			statement.setLong(3, newGood.getPrice());
-			
+
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -109,18 +102,18 @@ public class GoodDao {
 			try {
 				statement.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			try {
 				connection.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
 	}
-	
+
 	public void delete(String artNo) {
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -138,18 +131,17 @@ public class GoodDao {
 			try {
 				statement.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			try {
 				connection.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
 
 	}
-	
-	
+
 }
